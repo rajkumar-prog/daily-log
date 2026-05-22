@@ -15,13 +15,13 @@ if [ ! -f "$LOG_FILE" ]; then
 # $DATE
 
 ## What I worked on
--
+- <!-- fill in: PRs opened, issues fixed, code reviewed -->
 
 ## Issues explored
--
+- <!-- fill in: issue links and brief description -->
 
 ## Notes
--
+- <!-- fill in: things learned, patterns noticed, gotchas -->
 EOF
 fi
 

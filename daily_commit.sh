@@ -27,26 +27,45 @@ if [ ! -f "$LOG_FILE" ]; then
 EOF
 fi
 
-# Create Desktop log (deeper personal notes)
-mkdir -p "$HOME/Desktop/Daily-Logs"
+# Create combined Desktop Work Log
+mkdir -p "$HOME/Desktop/Work-Logs"
+DESKTOP_LOG="$HOME/Desktop/Work-Logs/$DATE.md"
 if [ ! -f "$DESKTOP_LOG" ]; then
   cat > "$DESKTOP_LOG" <<EOF
-# Daily Log — $DATE
+# Work Log — $DATE
 
-## What I worked on
+---
+
+## Overview
+<!-- brief summary of the day -->
+
+---
+
+## PR — <repo> #<number> · <title>
+
+### What is this repo / what does this part do?
 
 
-## What I learned
+### What was the problem — root cause
 
+
+### What I changed
+
+
+### What can be done in the future
+
+
+---
+
+## What I learned today
 -
 
-## PRs opened / issues explored
+---
 
--
-
-## Blockers / things to follow up
-
--
+## Quick Links
+- **PR:** [repo #number](https://github.com/...)
+- **Issue:** [issue title](https://github.com/...)
+- **File changed:** \`path/to/file\`
 EOF
 fi
 

@@ -17,42 +17,43 @@ fi
 # Sanitize repo name for folder (replace / with -)
 REPO_FOLDER=$(echo "$REPO" | tr '/' '-')
 DATE=$(date +"%Y-%m-%d")
-FOLDER="$HOME/Desktop/PRs/$REPO_FOLDER/PR${PR_NUM}_$(echo "$TITLE" | tr ' ' '_' | tr '[:upper:]' '[:lower:]' | sed 's/[^a-z0-9_]//g')"
+WORK_LOG="$HOME/Desktop/Work-Logs/$DATE.md"
 
-mkdir -p "$FOLDER"
-FILE="$FOLDER/notes.md"
+# Append PR section to today's work log (create if it doesn't exist)
+mkdir -p "$HOME/Desktop/Work-Logs"
 
-cat > "$FILE" <<EOF
-# PR #${PR_NUM} — ${REPO} — ${TITLE}
-Link: https://github.com/${REPO}/pull/${PR_NUM}
-Date: ${DATE}
-
----
-
-## What is this part of the codebase?
-
+if [ ! -f "$WORK_LOG" ]; then
+  cat > "$WORK_LOG" <<HEADER
+# Work Log — ${DATE}
 
 ---
 
-## What was the problem?
+## Overview
+<!-- brief summary of the day -->
 
+HEADER
+fi
 
----
-
-## What did I change?
-
-
----
-
-## Before → Now → After
-
+cat >> "$WORK_LOG" <<EOF
 
 ---
 
-## What I learned
+## PR — ${REPO} #${PR_NUM} · ${TITLE}
+<!-- Added by new_pr_note.sh -->
 
--
+### What is this repo / what does this part do?
+
+
+### What was the problem — root cause
+
+
+### What I changed
+
+
+### What can be done in the future
+
+
 EOF
 
-echo "Created: $FILE"
-echo "Open it and fill in the sections."
+echo "Appended PR section to: $WORK_LOG"
+echo "Open Desktop/Work-Logs/$DATE.md and fill in the sections."
